@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxgudoota6rcc"]
+
+[ext_resource type="Shader" path="res://Shader/DistanceColor.gdshader" id="1_nqcbp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbt1p"]
+render_priority = 0
+shader = ExtResource("1_nqcbp")
+shader_parameter/color = Color(0.392157, 0.392157, 0.392157, 1)
+shader_parameter/far = 50.0
+shader_parameter/near = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_rd4s8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ufqe"]
+
+[node name="Box_Red" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22215, -10.3866)
+max_contacts_reported = 1
+contact_monitor = true
+angular_damp = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_xbt1p")
+mesh = SubResource("BoxMesh_rd4s8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0ufqe")

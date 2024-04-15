@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dg2fy83l1cg8x"]
+
+[ext_resource type="Shader" path="res://Shader/DistanceTexture.gdshader" id="1_ubdpx"]
+[ext_resource type="Texture2D" uid="uid://4hddgw2bcgdu" path="res://Textures/Brick.png" id="2_fycmv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ubdpx")
+shader_parameter/far = 50.0
+shader_parameter/near = 1.0
+shader_parameter/scale = Vector2(1, 10)
+shader_parameter/tex = ExtResource("2_fycmv")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://hxbr1linb41m"]
+
+[ext_resource type="Script" path="res://Scripts/Flask.gd" id="1_ors17"]
+[ext_resource type="Shader" path="res://Shader/DistanceColor.gdshader" id="2_o3guo"]
+[ext_resource type="ArrayMesh" uid="uid://c5wommd2a61as" path="res://Models/Flask.obj" id="3_pr7ku"]
+[ext_resource type="AudioStream" uid="uid://cgbvdbhyqa4cw" path="res://Audio/Glass.ogg" id="4_xxdsd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oahfn"]
+render_priority = 0
+shader = ExtResource("2_o3guo")
+shader_parameter/color = Color(0.627451, 0.627451, 0.627451, 1)
+shader_parameter/far = 50.0
+shader_parameter/near = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ox6gr"]
+height = 0.843502
+radius = 0.34048
+
+[node name="Flask_Green" type="RigidBody3D"]
+angular_damp = 0.1
+script = ExtResource("1_ors17")
+
+[node name="Flask" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_oahfn")
+mesh = ExtResource("3_pr7ku")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14649, 0)
+shape = SubResource("CylinderShape3D_ox6gr")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_xxdsd")
